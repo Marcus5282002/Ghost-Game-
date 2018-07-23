@@ -6,9 +6,9 @@
 
 var mainState = {
     preload: function(){
-        game.load.image("floor","floor.png");
-		game.load.image("walls","walls.png");
-		game.load.image("player","player.png");
+        game.load.image("floor","assets/floor.png");
+		game.load.image("walls","assets/walls.png");
+        game.load.image("player","assets/player.png")
     },
     
     create: function(){             
