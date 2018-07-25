@@ -1,0 +1,126 @@
+body {
+  background-image: url(image.png);
+    background-repeat: no-repeat;
+        background-size:cover;
+            display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  
+}
+
+#allthethings {
+       display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  width:0px;
+  height:0px;
+  
+  border-left: 300px solid transparent;
+  border-right:300px solid transparent;
+  border-top: 300px solid transparent;
+  border-radius: px;
+  position:relative;
+  margin:auto;
+  top:5px;
+  left:2px; 
+}
+
+#The_Phantasm_Demo {
+  
+    margin-bottom: 20px;
+    
+  bottom:350px;
+  right:200px;
+  height:50px;
+  width:300px;
+  background:darkred;
+  text-align:center;
+  font-size:30px;
+ background-size: 1px 300%;
+ -webkit-transition:0.5s;
+  transition:0.5s;
+  color:darkgoldenrod;
+  font-family:shadows into light;
+  cursor:pointer;  
+}
+
+#The_Phantasm_Demo p {
+  position:relative;
+  top:-18px;
+}
+
+#The_Phantasm_Demo:hover {
+background:white;
+  color:black;
+-webkit-transform:rotate(8deg);
+  transform:rotate(8deg);
+    
+    }
+
+#single {
+  
+    margin-bottom: 20px;
+    
+  bottom:330px;
+  right:200px;
+  height:50px;
+  width:300px;
+  background:darkred;
+  text-align:center;
+  font-size:30px;
+ background-size: 1px 300%;
+ -webkit-transition:0.5s;
+  transition:0.5s;
+  color:darkgoldenrod;
+  font-family:shadows into light;
+  cursor:pointer;  
+}
+
+#single p {
+  position:relative;
+  top:-18px;
+}
+#single:hover {
+  background:white;
+  color:black;
+-webkit-transform:rotate(-1deg);
+  transform:rotate(-2deg);
+  
+  
+}
+#credits:hover {
+  background:white;
+  color:black;
+  -webkit-transform:rotate(-2deg);
+  transform:rotate(-2deg);
+  
+}
+
+#credits {
+    
+    margin-bottom: 20px;
+    margin-bottom: 20px;
+    
+  bottom:330px;
+  right:200px;
+  height:50px;
+  width:300px;
+  background:darkred;
+  text-align:center;
+  font-size:30px;
+ background-size: 1px 300%;
+ -webkit-transition:0.5s;
+  transition:0.5s;
+  color:darkgoldenrod;
+  font-family:shadows into light;
+  cursor:pointer;
+  
+}
+
+#credits p {
+  position:relative;
+  top:-18px;
+  
+}
