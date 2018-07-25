@@ -8,7 +8,7 @@ body {
     flex-direction: column;
 }
     
-#Marcus Zelidon {
+#MarcusZelidon {
   
     margin-bottom: 20px;
     
@@ -27,12 +27,43 @@ body {
     cursor:pointer;  
 }
 
-#Marcus Zelidon p {
+#MarcusZelidon p {
   position:relative;
   top:-18px;
 }
 
-#Marcus Zelidon:hover {
+#MarcusZelidon:hover {
+background:white;
+  color:black;
+-webkit-transform:rotate(8deg);
+  transform:rotate(8deg);
+     }
+
+#Ivan {
+  
+    margin-bottom: 20px;
+    
+    bottom:350px;
+    right:200px;
+    height:50px;
+    width:300px;
+    background:darkred;
+    text-align:center;
+    font-size:30px;
+    background-size: 1px 300%;
+    -webkit-transition:0.5s;
+    transition:0.5s;
+    color:darkgoldenrod;
+    font-family:shadows into light;
+    cursor:pointer;  
+}
+
+#Ivan p {
+  position:relative;
+  top:-18px;
+}
+
+#Ivan:hover {
 background:white;
   color:black;
 -webkit-transform:rotate(8deg);
