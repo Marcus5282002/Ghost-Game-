@@ -23,7 +23,7 @@ var mainState = {
         game.world.enableBody = true;
 	    this.lightAngle = Math.PI/4;
 	    this.numberOfRays = 20;
-	    this.rayLength = 70;
+	    this.rayLength = 130;
         this.floor = game.add.sprite(0,0,"floor");
 		this.wallsBitmap = game.make.bitmapData(1420,800);
 		this.wallsBitmap.draw("walls");
@@ -97,7 +97,7 @@ var mainState = {
         
         for(var j= 0; j < this.enemies.children.length; j++ ){
             if(Math.abs(this.player.body.x - this.enemies.children[j].body.x) < 70 || Math.abs(this.player.body.y - this.enemies.children[j].body.y) < 70){
-                game.physics.arcade.moveToObject(this.enemies.children[j], this.player, 30);
+                game.physics.arcade.moveToObject(this.enemies.children[j], this.player, 40);
             }else{
                 this.enemies.children[j].body.velocity.x = 0;
                 this.enemies.children[j].body.velocity.y = 0;
