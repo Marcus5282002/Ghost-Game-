@@ -17,6 +17,7 @@ var mainState = {
         game.load.image('paper', "assets/paper.png");
     },
     
+    
     create: function(){             
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
         game.world.enableBody = true;
@@ -43,13 +44,14 @@ var mainState = {
         this.player.animations.add('left', [12, 13, 14, 15], 10, true);
         this.game.physics.arcade.enable(this.walls);
         this.enemies = game.add.group();
-        var paper;
         this.walls = game.add.group();
         this.music = game.add.audio('music');
         this.paper = game.add.group();
         this.music = game.add.audio('music');
         this.music.play();
         this.music.loop = true;
+        this.count = 0;
+        this.score = game.add.text(0, 0, "Score: " + this.count, { font: '32px monospace', fill: '#d2f5f2'});
         var rand;
         var spawnPointCount = 3;
         //this is an array of objects representing spawn points in the map
@@ -74,7 +76,8 @@ var mainState = {
          
          for(var o = 0; o < spawnPointCount; o++){
             rand = Math.floor(Math.random() * spawnPoints.length); //returns number between 0-spawnpoints.length - 1
-            this.paper = game.add.sprite(spawnPoints[rand].x, spawnPoints[rand].y, 'paper');
+            var paper = game.add.sprite(spawnPoints[rand].x, spawnPoints[rand].y, 'paper');
+            this.paper.add(paper);
             this.paper.mask = this.maskGraphics;
             }
         
@@ -91,7 +94,6 @@ var mainState = {
             
         game.physics.arcade.overlap(this.player, this.enemies, this.restart, null, this);
         game.physics.arcade.overlap(this.player, this.paper, this.collectPaper, null, this);
-        this.scoreText = game.add.text(0, 0, "Score: 0", { fontSize: '32px', fill: '#d2f5f2', fontFamily: 'monospace' });
         
         for(var j= 0; j < this.enemies.children.length; j++ ){
             if(Math.abs(this.player.body.x - this.enemies.children[j].body.x) < 70 || Math.abs(this.player.body.y - this.enemies.children[j].body.y) < 70){
@@ -161,6 +163,7 @@ var mainState = {
         }
         
         
+        
 		if(Math.abs(xSpeed)+Math.abs(ySpeed)<2 && Math.abs(xSpeed)+Math.abs(ySpeed)>0){
 			var color = this.wallsBitmap.getPixel32(this.player.x+xSpeed+this.player.width/2,this.player.y+ySpeed+this.player.height/2);
 			color+= this.wallsBitmap.getPixel32(this.player.x+xSpeed-this.player.width/2,this.player.y+ySpeed+this.player.height/2);
@@ -204,9 +207,9 @@ var mainState = {
     },
     
     collectPaper: function(){
-        this.paper.sprite.kill();
-        this.score =+ 1;
-        this.scoreText.text = "Score: " + this.score;
+        this.paper.kill();
+        this.count =+ 1;
+        this.score.text = "Score: " + this.count;
     }
     
     
