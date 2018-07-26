@@ -17,8 +17,6 @@ var mainState = {
         game.load.image('paper', "assets/paper.png");
     },
     
-    
-    
     create: function(){             
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
         game.world.enableBody = true;
@@ -45,9 +43,13 @@ var mainState = {
         this.player.animations.add('left', [12, 13, 14, 15], 10, true);
         this.game.physics.arcade.enable(this.walls);
         this.enemies = game.add.group();
+        var paper;
         this.walls = game.add.group();
+        this.music = game.add.audio('music');
         this.paper = game.add.group();
-     
+        this.music = game.add.audio('music');
+        this.music.play();
+        this.music.loop = true;
         var rand;
         var spawnPointCount = 3;
         //this is an array of objects representing spawn points in the map
@@ -66,7 +68,6 @@ var mainState = {
             enemy.animations.add('right', [6, 7, 8], 10, true);
             enemy.animations.add('left', [9, 10, 11], 10, true);
             this.enemies.add(enemy);
-            this.enemyspeed = 10;
             this.enemies.mask = this.maskGraphics;
         }
         
@@ -89,8 +90,8 @@ var mainState = {
     update: function(){
             
         game.physics.arcade.overlap(this.player, this.enemies, this.restart, null, this);
-        game.physics.arcade.collide(this.walls, this.enemies);
-        game.physics.arcade.overlap(this.player, this.paper, this.countScore, null, this);
+        game.physics.arcade.overlap(this.player, this.paper, this.collectPaper, null, this);
+        this.scoreText = game.add.text(0, 0, "Score: 0", { fontSize: '32px', fill: '#d2f5f2', fontFamily: 'monospace' });
         
         for(var j= 0; j < this.enemies.children.length; j++ ){
             if(Math.abs(this.player.body.x - this.enemies.children[j].body.x) < 70 || Math.abs(this.player.body.y - this.enemies.children[j].body.y) < 70){
@@ -171,19 +172,6 @@ var mainState = {
 			}		
 		}
         
-        for(var i =0; i < this.enemies.children.length; i++){
-            if(Math.abs(xSpeed)+Math.abs(ySpeed)<2 && Math.abs(xSpeed)+Math.abs(ySpeed)>0){
-			color = this.wallsBitmap.getPixel32(this.enemies.children[i].x+xSpeed+this.enemies.children[i].width/2,this.enemies.children[i].y+ySpeed+this.enemies.children[i].height/2);
-			color+= this.wallsBitmap.getPixel32(this.enemies.children[i].x+xSpeed-this.enemies.children[i].width/2,this.enemies.children[i].y+ySpeed+this.enemies.children[i].height/2);
-			color+=this.wallsBitmap.getPixel32(this.enemies.children[i].x+xSpeed-this.enemies.children[i].width/2,this.enemies.children[i].y+ySpeed-this.enemies.children[i].height/2)
-			color+=this.wallsBitmap.getPixel32(this.enemies.children[i].x+xSpeed+this.enemies.children[i].width/2,this.player.y+ySpeed-this.enemies.children[i].height/2)
-			if(color==0){
-				this.enemies.children[i].x+=xSpeed;
-				this.enemies.children[i].y+=ySpeed;
-			}		
-		}
-        }
-        
 		var mouseAngle = Math.atan2(this.player.y-game.input.y,this.player.x-game.input.x);
 		this.maskGraphics.clear();
 		this.maskGraphics.lineStyle(2, 0xffffff, 1);
@@ -214,6 +202,12 @@ var mainState = {
     restart: function(){
     game.state.start('main');    
     },
+    
+    collectPaper: function(){
+        this.paper.sprite.kill();
+        this.score =+ 1;
+        this.scoreText.text = "Score: " + this.score;
+    }
     
     
 }
